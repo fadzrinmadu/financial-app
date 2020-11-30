@@ -8,5 +8,6 @@ router.get('/', dashboardController.index);
 router.get('/dashboard', dashboardController.index);
 
 router.get('/cash-in', cashController.index);
+router.get('/cash-out', cashController.cashOut);
 
 module.exports = router;

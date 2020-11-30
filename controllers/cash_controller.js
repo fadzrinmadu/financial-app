@@ -5,6 +5,14 @@ const index = (req, res) => {
   });
 };
 
+const cashOut = (req, res) => {
+  res.render('admin/index', {
+    template: 'cash_out',
+    title: 'Cash Out',
+  });
+};
+
 module.exports = {
   index,
+  cashOut,
 };
