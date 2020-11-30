@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <%- include('./partials/head.ejs') %>
+</head>
+<body>
+  <div id="wrapper">
+    <%- include('./partials/navbar.ejs') %>
+    <%- include('./partials/sidebar.ejs') %>
+    <%- include(`./templates/${template}`) %>
+  </div>    
+  
+  <%- include('./partials/scripts.ejs') %>
+</body>
+</html>

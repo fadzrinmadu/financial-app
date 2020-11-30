@@ -4,8 +4,8 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
-const indexRouter = require('./routes/index');
-const adminRouter = require('./routes/admin');
+const authRouter = require('./routes/auth.js');
+const adminRouter = require('./routes/admin.js');
 
 const app = express();
 
@@ -18,9 +18,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/gentelella', express.static(path.join(__dirname, 'node_modules/gentelella')));
 
-app.use('/', indexRouter);
+app.use('/', authRouter);
 app.use('/admin', adminRouter);
 
 // catch 404 and forward to error handler

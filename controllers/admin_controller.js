@@ -1,5 +1,10 @@
+const index = (req, res) => {
+  res.render('admin/index', {
+    template: 'dashboard',
+    title: 'Dashboard',
+  });
+};
+
 module.exports = {
-  viewDashboard: (req, res) => {
-    res.render('admin/dashboard');
-  },
+  index,
 };
