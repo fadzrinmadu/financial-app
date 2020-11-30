@@ -1,9 +1,12 @@
 const express = require('express');
 const router = express.Router();
 
-const adminController = require('../controllers/admin_controller');
+const dashboardController = require('../controllers/dashboard_controller');
+const cashController = require('../controllers/cash_controller');
 
-router.get('/', adminController.index);
-router.get('/dashboard', adminController.index);
+router.get('/', dashboardController.index);
+router.get('/dashboard', dashboardController.index);
+
+router.get('/cash-in', cashController.index);
 
 module.exports = router;
