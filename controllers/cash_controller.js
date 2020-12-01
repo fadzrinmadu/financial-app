@@ -1,15 +1,9 @@
 const index = (req, res) => {
-  res.render('admin/index', {
-    template: 'cash_in',
-    title: 'Cash In',
-  });
+  res.render('cash/cash_in_view');
 };
 
 const cashOut = (req, res) => {
-  res.render('admin/index', {
-    template: 'cash_out',
-    title: 'Cash Out',
-  });
+  res.render('cash/cash_out_view');
 };
 
 module.exports = {

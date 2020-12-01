@@ -1,8 +1,5 @@
 const cashSummary = (req, res) => {
-  res.render('admin/index', {
-    template: 'report_cash_summary',
-    title: 'Report Cash Summary',
-  });
+  res.render('report/report_cash_summary_view');
 };
 
 module.exports = {
