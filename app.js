@@ -3,11 +3,22 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const mongoose = require('mongoose');
 
 const authRouter = require('./routes/auth.js');
 const adminRouter = require('./routes/admin.js');
 
 const app = express();
+
+// connection to database
+mongoose.connect('mongodb://localhost/db_cash', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+}).then(() => {
+  console.log('database connection successfully');
+}).catch((error) => {
+  console.log('database connection failed: ', error);
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

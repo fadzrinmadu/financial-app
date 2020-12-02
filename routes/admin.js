@@ -9,6 +9,7 @@ router.get('/', dashboardController.index);
 router.get('/dashboard', dashboardController.index);
 
 router.get('/cash-in', cashController.index);
+router.post('/cash-in', cashController.addCashIn);
 router.get('/cash-out', cashController.cashOut);
 
 router.get('/report/cash-summary', reportController.cashSummary);
