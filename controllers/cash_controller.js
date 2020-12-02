@@ -1,7 +1,15 @@
 const Cash = require('../models/Cash');
 
-const index = (req, res) => {
-  res.render('cash/cash_in_view');
+const index = async (req, res) => {
+  try {
+    const cashIn = await Cash.find().where({ type: 'cash-in' });
+    
+    res.render('cash/cash_in_view', {
+      cashIn,
+    });
+  } catch(error) {
+    console.log(error);
+  }
 };
 
 const addCashIn = async (req, res) => {

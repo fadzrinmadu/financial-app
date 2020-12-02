@@ -36,72 +36,19 @@
                       </tr>
                     </thead>
                     <tbody>
+                      <% cashIn.forEach((item, index) => { %>
                       <tr>
-                        <td class="text-center">1</td>
-                        <td class="text-center">1234</td>
-                        <td class="text-center">12/01/2020</td>
-                        <td>Got money from mother</td>
-                        <td class="text-right">Rp. 12.000.000,-</td>
+                        <td class="text-center"><%= ++index %></td>
+                        <td class="text-center"><%= item.receiptNumber %></td>
+                        <td class="text-center"><%= item.date.toLocaleString().split(',')[0] %></td>
+                        <td><%= item.description %></td>
+                        <td class="text-right">Rp. <%= item.amount %>,-</td>
                         <td class="text-center">
                           <a class="btn btn-warning mr-2" href="#"><i class="glyphicon glyphicon-pencil"></i></a>
                           <a class="btn btn-danger" href="#"><i class="glyphicon glyphicon-trash"></i></a>
                         </td>
                       </tr>
-                      <tr>
-                        <td class="text-center">2</td>
-                        <td class="text-center">1234</td>
-                        <td class="text-center">12/01/2020</td>
-                        <td>Got money from mother</td>
-                        <td class="text-right">Rp. 12.000.000,-</td>
-                        <td class="text-center">
-                          <a class="btn btn-warning mr-2" href="#"><i class="glyphicon glyphicon-pencil"></i></a>
-                          <a class="btn btn-danger" href="#"><i class="glyphicon glyphicon-trash"></i></a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="text-center">3</td>
-                        <td class="text-center">1234</td>
-                        <td class="text-center">12/01/2020</td>
-                        <td>Got money from mother</td>
-                        <td class="text-right">Rp. 12.000.000,-</td>
-                        <td class="text-center">
-                          <a class="btn btn-warning mr-2" href="#"><i class="glyphicon glyphicon-pencil"></i></a>
-                          <a class="btn btn-danger" href="#"><i class="glyphicon glyphicon-trash"></i></a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="text-center">4</td>
-                        <td class="text-center">1234</td>
-                        <td class="text-center">12/01/2020</td>
-                        <td>Got money from mother</td>
-                        <td class="text-right">Rp. 12.000.000,-</td>
-                        <td class="text-center">
-                          <a class="btn btn-warning mr-2" href="#"><i class="glyphicon glyphicon-pencil"></i></a>
-                          <a class="btn btn-danger" href="#"><i class="glyphicon glyphicon-trash"></i></a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="text-center">5</td>
-                        <td class="text-center">1234</td>
-                        <td class="text-center">12/01/2020</td>
-                        <td>Got money from mother</td>
-                        <td class="text-right">Rp. 12.000.000,-</td>
-                        <td class="text-center">
-                          <a class="btn btn-warning mr-2" href="#"><i class="glyphicon glyphicon-pencil"></i></a>
-                          <a class="btn btn-danger" href="#"><i class="glyphicon glyphicon-trash"></i></a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="text-center">6</td>
-                        <td class="text-center">1234</td>
-                        <td class="text-center">12/01/2020</td>
-                        <td>Got money from mother</td>
-                        <td class="text-right">Rp. 12.000.000,-</td>
-                        <td class="text-center">
-                          <a class="btn btn-warning mr-2" href="#"><i class="glyphicon glyphicon-pencil"></i></a>
-                          <a class="btn btn-danger" href="#"><i class="glyphicon glyphicon-trash"></i></a>
-                        </td>
-                      </tr>
+                      <% }) %>
                     </tbody>
                     <tfoot class="bg-success">
                       <tr>
