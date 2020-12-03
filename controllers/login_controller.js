@@ -1,5 +1,9 @@
 const index = (req, res) => {
-  res.render('login/login_view');
+  const data = {
+    siteTitle: 'Login',
+  };
+
+  res.render('login/login_view', data);
 };
 
 module.exports = {

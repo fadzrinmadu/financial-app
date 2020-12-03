@@ -22,7 +22,7 @@
               <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#modalAddCashIn">
                 <i class="fa fa-plus"></i> Tambah
               </a>
-              <a class="btn btn-danger" href="#" style="display: none">
+              <a class="btn btn-danger btn-delete" href="#" style="display: none">
                 <i class="glyphicon glyphicon-trash"></i> Hapus
               </a>
             </div>
@@ -42,7 +42,7 @@
                       <% cashIn.forEach((item) => { %>
                       <tr>
                         <td class="text-center">
-                          <input type="checkbox" value="<%= item._id %>">
+                          <input class="checkbox-cash" type="checkbox" value="<%= item._id %>">
                         </td>
                         <td><%= item.date.toLocaleString().split(',')[0] %></td>
                         <td><%= item.description %></td>

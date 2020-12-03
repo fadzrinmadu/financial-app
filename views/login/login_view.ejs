@@ -1,11 +1,56 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
   <%- include('../_partials/head.ejs') %>
 </head>
-<body>
-  <h1>Login Page</h1>
+<body class="bg-silver-300">
+
+  <div class="content">
+    <form id="login-form" action="/" method="POST" style="margin-top: 120px;">
+      <h2 class="login-title">Log in</h2>
+      <div class="form-group">
+        <div class="input-group-icon right">
+          <div class="input-icon"><i class="fa fa-user"></i></div>
+          <input class="form-control" type="text" name="username" placeholder="Username" autocomplete="off">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-group-icon right">
+          <div class="input-icon"><i class="fa fa-lock font-16"></i></div>
+          <input class="form-control" type="password" name="password" placeholder="Password">
+        </div>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-info btn-block" type="submit">Login</button>
+      </div>
+    </form>
+  </div>
+
+<%- include('../_partials/preloader.ejs') %>
+<%- include('../_partials/scripts.ejs') %>
+
+<script type="text/javascript">
+  $(function() {
+    $('#login-form').validate({
+      errorClass: "help-block",
+      rules: {
+        email: {
+          required: true,
+          email: true,
+        },
+        password: {
+          required: true,
+        },
+      },
+      highlight: function(e) {
+        $(e).closest(".form-group").addClass("has-error");
+      },
+      unhighlight: function(e) {
+        $(e).closest(".form-group").removeClass("has-error");
+      },
+    });
+  });
+</script>
   
-  <%- include('../_partials/scripts.ejs') %>
 </body>
 </html>
