@@ -1,10 +1,6 @@
 const mongoose = require('mongoose');
 
 const cashSchema = new mongoose.Schema({
-  receiptNumber: {
-    type: Number,
-    required: true,
-  },
   date: {
     type: Date,
     required: true,
@@ -24,9 +20,8 @@ const cashSchema = new mongoose.Schema({
 });
 
 cashSchema.statics.addCashIn = async function(data) {
-  const { receiptNumber, date, amount, description } = data;
+  const { date, amount, description } = data;
   const cashIn = await this.create({
-    receiptNumber,
     date,
     amount,
     description,
