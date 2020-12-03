@@ -1,63 +1,60 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
 <head>
   <%- include('../_partials/head.ejs') %>
 </head>
-<body>
-  <div id="wrapper">
+<body class="fixed-navbar">
+
+  <div class="page-wrapper">
     <%- include('../_partials/navbar.ejs') %>
     <%- include('../_partials/sidebar.ejs') %>
-    
-    <div id="page-wrapper" >
-      <div id="page-inner">
+
+    <div class="content-wrapper">
+      <div class="page-heading">
+        <h1 class="page-title">Dashboard</h1>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="index.html"><i class="la la-home font-20"></i></a>
+          </li>
+          <li class="breadcrumb-item"><a href="/admin">Home</a></li>
+          <li class="breadcrumb-item active">Dashboard</li>
+        </ol>
+      </div>
+      <div class="page-content fade-in-up">
         <div class="row">
-          <div class="col-md-12">
-            <h2>Dashboard</h2>
-          </div>
-        </div> 
-        <hr />
-        <div class="alert alert-info">
-          Selamat Datang <b>Muhammad Fadzrin Madu</b>.
-        </div>
-        <div class="row">
-          <div class="col-sm-12 col-lg-4">
-            <div class="panel panel-back noti-box">
-              <span class="icon-box bg-color-blue set-icon">
-                <i class="glyphicon glyphicon-floppy-save"></i>
-              </span>
-              <div class="text-box">
-                <p class="main-text">Rp. 2.750.000,-</p>
-                <p class="text-muted">Total Pemasukkan</p>
+          <div class="col-lg-4 col-md-6">
+            <div class="ibox bg-success color-white widget-stat">
+              <div class="ibox-body">
+                <h2 class="m-b-5 font-strong">Rp. 2.230.000,-</h2>
+                <div class="m-b-5 mt-4">TOTAL KAS MASUK</div><i class="ti-shopping-cart widget-stat-icon"></i>
               </div>
             </div>
           </div>
-          <div class="col-sm-12 col-lg-4">
-            <div class="panel panel-back noti-box">
-              <span class="icon-box bg-color-red set-icon">
-                <i class="glyphicon glyphicon-floppy-open"></i>
-              </span>
-              <div class="text-box">
-                <p class="main-text">Rp. 550.000,-</p>
-                <p class="text-muted">Total Pengeluaran</p>
+          <div class="col-lg-4 col-md-6">
+            <div class="ibox bg-info color-white widget-stat">
+              <div class="ibox-body">
+                <h2 class="m-b-5 font-strong">Rp. 650.000,-</h2>
+                <div class="m-b-5 mt-4">TOTAL KAS KELUAR</div><i class="ti-bar-chart widget-stat-icon"></i>
               </div>
             </div>
           </div>
-          <div class="col-sm-12 col-lg-4">
-            <div class="panel panel-back noti-box">
-              <span class="icon-box bg-color-green set-icon">
-                <i class="fa fa-dollar"></i>
-              </span>
-              <div class="text-box">
-                <p class="main-text">Rp. 2.200.000</p>
-                <p class="text-muted">Total Kas Akhir</p>
+          <div class="col-lg-4 col-md-6">
+            <div class="ibox bg-warning color-white widget-stat">
+              <div class="ibox-body">
+                <h2 class="m-b-5 font-strong">Rp. 3.450.000,-</h2>
+                <div class="m-b-5 mt-4">TOTAL SALDO</div><i class="fa fa-money widget-stat-icon"></i>
               </div>
             </div>
           </div>
         </div>
       </div>
+      
+      <%- include('../_partials/footer.ejs') %>
     </div>
-  </div>    
-  
+  </div>
+
+  <%- include('../_partials/preloader.ejs') %>
   <%- include('../_partials/scripts.ejs') %>
+
 </body>
 </html>

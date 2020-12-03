@@ -1,5 +1,9 @@
 const index = (req, res) => {
-  res.render('dashboard/dashboard_view');
+  const data = {
+    siteTitle: 'Dashboard',
+  };
+
+  res.render('dashboard/dashboard_view', data);
 };
 
 module.exports = {

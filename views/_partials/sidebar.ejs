@@ -1,34 +1,57 @@
-<nav class="navbar-default navbar-side" role="navigation">
-  <div class="sidebar-collapse">
-    <ul class="nav" id="main-menu">
-      <li class="text-center">
-        <img src="/img/find_user.png" class="user-image img-responsive"/>
+<nav class="page-sidebar" id="sidebar">
+  <div id="sidebar-collapse">
+    <div class="admin-block d-flex">
+      <div>
+        <img src="/img/admin-avatar.png" width="45px" />
+      </div>
+      <div class="admin-info">
+        <div class="font-strong">James Brown</div><small>Administrator</small>
+      </div>
+    </div>
+    <ul class="side-menu metismenu">
+      <li class="heading">Main Menu</li>
+      <li>
+        <a class="active" href="/admin">
+          <i class="sidebar-item-icon fa fa-dashboard"></i>
+          <span class="nav-label">Dashboard</span>
+        </a>
       </li>
       <li>
-        <a href="/admin"><i class="fa fa-dashboard"></i> Dashboard</a>
+        <a href="/admin/cash-in">
+          <i class="sidebar-item-icon fa fa-list-ul"></i>
+          <span class="nav-label">Kas Masuk</span>
+        </a>
       </li>
       <li>
-        <a href="/admin/cash-in"><i class="glyphicon glyphicon-floppy-save"></i> Kas Masuk</a>
+        <a href="/admin/cash-out">
+          <i class="sidebar-item-icon fa fa-th-list"></i>
+          <span class="nav-label">Kas Keluar</span>
+        </a>
       </li>
       <li>
-        <a href="/admin/cash-out"><i class="glyphicon glyphicon-floppy-open"></i> Kas Keluar</a>
+        <a href="#">
+          <i class="sidebar-item-icon fa fa-book"></i>
+          <span class="nav-label">Rekapitulasi Kas</span>
+        </a>
       </li>
       <li>
-        <a href="#"><i class="fa fa-book"></i> Laporan<span class="fa arrow"></span></a>
-        <ul class="nav nav-second-level">
-          <li>
-            <a href="#">Laporan Pemasukkan</a>
-          </li>
-          <li>
-            <a href="#">Laporan Pengeluaran</a>
-          </li>
-          <li>
-            <a href="/admin/report/cash-summary">Laporan Rekapitulasi</a>
-          </li>
-        </ul>
+        <a href="/member">
+          <i class="sidebar-item-icon fa fa-bar-chart"></i>
+          <span class="nav-label">Grafik</span>
+        </a>
       </li>
       <li>
-        <a href="/admin/setting"><i class="fa fa-user"></i> User Settings</a>
+        <a href="/member">
+          <i class="sidebar-item-icon fa fa-users"></i>
+          <span class="nav-label">Anggota</span>
+        </a>
+      </li>
+      <li class="heading">Settings</li>
+      <li>
+        <a href="#">
+          <i class="sidebar-item-icon fa fa-user"></i>
+          <span class="nav-label">Profile</span>
+        </a>
       </li>
     </ul>
   </div>

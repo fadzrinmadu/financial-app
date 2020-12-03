@@ -1,14 +1,29 @@
-<nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
-  <div class="navbar-header">
-    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
-      <span class="sr-only">Toggle navigation</span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
-    <a class="navbar-brand" href="#" style="font-size: 26px">MyCash</a> 
+<header class="header">
+  <div class="page-brand">
+      <a class="link" href="index.html">
+        <span class="brand">Manajemen
+          <span class="brand-tip">KAS</span>
+        </span>
+      </a>
+    </div>
+  <div class="flexbox flex-1">
+    <ul class="nav navbar-toolbar">
+      <li>
+        <a class="nav-link sidebar-toggler js-sidebar-toggler"><i class="ti-menu"></i></a>
+      </li>
+    </ul>
+    <ul class="nav navbar-toolbar">
+      <li class="dropdown dropdown-user">
+        <a class="nav-link dropdown-toggle link" data-toggle="dropdown">
+          <img src="/img/admin-avatar.png" />
+          <span></span>Admin<i class="fa fa-angle-down m-l-5"></i>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-right">
+          <a class="dropdown-item" href="profile.html"><i class="fa fa-user"></i>My Profile</a>
+          <li class="dropdown-divider"></li>
+          <a class="dropdown-item" href="login.html"><i class="fa fa-power-off"></i>Logout</a>
+        </ul>
+      </li>
+    </ul>
   </div>
-  <div style="color: white;padding: 15px 50px 5px 50px;float: right;font-size: 16px;"> 
-   Tanggal : 30 November 2020 &nbsp; <a href="#" class="btn btn-danger square-btn-adjust"><i class="fa fa-sign-out"></i> Logout</a> 
-  </div>
-</nav>
+</header>
