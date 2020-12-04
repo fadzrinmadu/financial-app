@@ -3,7 +3,7 @@ const { currencyFormatter } = require('../helpers/formatter.js');
 
 const index = async (req, res) => {
   try {
-    let cashIn = await Cash.find().where({ type: 'cash-in' });
+    let cashIn = await Cash.find().where({ type: 'cash-in' }).sort({ date: 'desc' });
 
     const data = {
       siteTitle: 'Kas Masuk',
