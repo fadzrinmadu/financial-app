@@ -55,7 +55,7 @@
                     <a class="btn btn-warning btn-edit mr-1" href="#" data-toggle="modal" data-target="#modalCashOut" data-id="<%= item.id %>" data-date="<%= item.date.toISOString().substring(0, 10) %>" data-amount="<%= item.amount %>" data-description="<%= item.description %>">
                       <i class="fa fa-edit"></i>
                     </a>
-                    <a class="btn btn-danger" href="/admin/cash-in/<%= item._id %>" onclick="return confirm('Yakin ingin menghapus data kas ini?')">
+                    <a class="btn btn-danger" href="/admin/cash-out/<%= item._id %>" onclick="return confirm('Yakin ingin menghapus data kas ini?')">
                       <i class="fa fa-trash"></i>
                     </a>
                   </td>

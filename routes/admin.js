@@ -14,6 +14,9 @@ router.post('/cash-in', cashController.addCashIn);
 router.put('/cash-in', cashController.editCashIn);
 
 router.get('/cash-out', cashController.cashOut);
+router.get('/cash-out/:id', cashController.deleteCashOut);
+router.post('/cash-out', cashController.addCashOut);
+router.put('/cash-out', cashController.editCashOut);
 
 router.get('/report/cash-summary', reportController.cashSummary);
 

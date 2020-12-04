@@ -87,10 +87,49 @@ const cashOut = async (req, res) => {
   }
 };
 
+const addCashOut = async (req, res) => {
+  try {
+    await Cash.addCashOut(req.body);
+
+    req.flash('alertStatus', 'success');
+    req.flash('alertMessage', 'Berhasil menambahkan data kas keluar');
+    res.redirect('/admin/cash-out');
+  } catch(error) {  
+    console.log(error);
+  }
+};
+
+const editCashOut = async (req, res) => {
+  try {
+    await Cash.editCashOut(req.body);
+
+    req.flash('alertStatus', 'success');
+    req.flash('alertMessage', 'Berhasil mengubah data kas keluar');
+    res.redirect('/admin/cash-out');
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const deleteCashOut = async (req, res) => {
+  try {
+    await Cash.deleteCashOut(req.params);
+
+    req.flash('alertStatus', 'success');
+    req.flash('alertMessage', 'Berhasil menghapus data kas keluar');
+    res.redirect('/admin/cash-out');
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 module.exports = {
   index,
   addCashIn,
   editCashIn,
   deleteCashIn,
   cashOut,
+  addCashOut,
+  editCashOut,
+  deleteCashOut,
 };
