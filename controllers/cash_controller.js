@@ -8,10 +8,13 @@ const index = async (req, res) => {
     const data = {
       siteTitle: 'Kas Masuk',
       cashIn,
+      totalCashIn: cashIn.reduce((total, item) => total + item.amount, 0),
       helpers: {
         currencyFormatter,
       },
     };
+
+    console.log(data.totalCashIn)
 
     res.render('cash/cash_in_view', data);
   } catch(error) {
