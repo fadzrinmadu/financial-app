@@ -62,8 +62,29 @@ const deleteCashIn = async (req, res) => {
   }
 };
 
-const cashOut = (req, res) => {
-  res.render('cash/cash_out_view');
+const cashOut = async (req, res) => {
+  try {
+    let cashOut = await Cash.find().where({ type: 'cash-out' }).sort({ date: 'desc' });
+
+    const alert = {
+      status: req.flash('alertStatus'),
+      message: req.flash('alertMessage'),
+    };
+
+    const data = {
+      siteTitle: 'Kas Keluar',
+      cashOut,
+      totalCashOut: cashOut.reduce((total, item) => total + item.amount, 0),
+      alert,
+      helpers: {
+        currencyFormatter,
+      },
+    };
+
+    res.render('cash/cash_out_view', data);
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 module.exports = {
