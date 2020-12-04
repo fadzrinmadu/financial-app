@@ -31,6 +31,15 @@ const addCashIn = async (req, res) => {
   }
 };
 
+const editCashIn = async (req, res) => {
+  try {
+    await Cash.editCashIn(req.body);
+    res.redirect('/admin/cash-in');
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const deleteCashIn = async (req, res) => {
   try {
     await Cash.deleteCashIn(req.params);
@@ -47,6 +56,7 @@ const cashOut = (req, res) => {
 module.exports = {
   index,
   addCashIn,
+  editCashIn,
   deleteCashIn,
   cashOut,
 };

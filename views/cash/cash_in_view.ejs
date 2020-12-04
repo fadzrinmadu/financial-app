@@ -26,7 +26,7 @@
           <div class="ibox-head">
             <div class="ibox-title">Data Kas Masuk</div>
             <div class="btn-wrapper">
-              <a class="btn btn-success" href="#" data-toggle="modal" data-target="#addModalCashIn">
+              <a class="btn btn-success btn-add" href="#" data-toggle="modal" data-target="#modalCashIn">
                 <i class="fa fa-pencil"></i>
                 <span>Tambah</span>
               </a>
@@ -51,6 +51,9 @@
                   <td><%= item.description %></td>
                   <td class="text-right"><%= helpers.currencyFormatter(item.amount) %>,-</td>
                   <td class="text-center">
+                    <a class="btn btn-warning btn-edit mr-1" href="#" data-toggle="modal" data-target="#modalCashIn" data-id="<%= item.id %>" data-date="<%= item.date.toISOString().substring(0, 10) %>" data-amount="<%= item.amount %>" data-description="<%= item.description %>">
+                      <i class="fa fa-edit"></i>
+                    </a>
                     <a class="btn btn-danger" href="/admin/cash-in/<%= item._id %>">
                       <i class="fa fa-trash"></i>
                     </a>
@@ -70,20 +73,20 @@
       </div>
 
       <!-- Modal Add Cash-In -->
-      <div class="modal fade" id="addModalCashIn" tabindex="-1" aria-labelledby="addModalCashInLabel" aria-hidden="true">
+      <div class="modal fade" id="modalCashIn" tabindex="-1" aria-labelledby="modalCashInLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="addModalCashInLabel">Tambah Kas Masuk</h5>
+              <h5 class="modal-title" id="modalCashInLabel">Tambah Kas Masuk</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <form action="/admin/cash-in" method="POST">
+            <form action="/admin/cash-in" method="POST" id="formCashIn">
               <div class="modal-body">
                 <div class="form-group">
                   <label for="date">Tanggal</label>
-                  <input type="date" class="form-control" name="date" id="date" value="<%= new Date().toISOString().substring(0, 10) %>">
+                  <input type="date" class="form-control" name="date" id="date">
                 </div>
                 <div class="form-group">
                   <label for="amount">Jumlah</label>
@@ -95,8 +98,9 @@
                 </div>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary" style="cursor: pointer;">Save</button>
+                <input type="hidden" name="id" id="cashInId">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="cursor: pointer;">Tutup</button>
+                <button type="submit" class="btn btn-primary" id="btnModalForm" style="cursor: pointer;">Simpan</button>
               </div>
             </form>
           </div>
@@ -113,6 +117,43 @@
 <script>
   $(document).ready( function () {
     $('#dataTables').DataTable();
+
+    const btnAddCashIn = document.querySelector('.btn-add');
+    const btnEditCashIn = document.querySelectorAll('.btn-edit');
+
+    const modalCashInLabel = document.querySelector('#modalCashInLabel');
+    const btnModalForm = document.querySelector('#btnModalForm');
+
+    const cashInId = document.querySelector('#cashInId');
+    const date = document.querySelector('#date');
+    const amount = document.querySelector('#amount');
+    const description = document.querySelector('#description');
+
+    const formCashIn = document.querySelector('#formCashIn');
+
+    btnAddCashIn.addEventListener('click', () => {
+      formCashIn.setAttribute('action', '/admin/cash-in');
+      modalCashInLabel.textContent = 'Tambah Kas Masuk';
+      btnModalForm.textContent = 'Simpan';
+
+      cashInId.value = '';
+      date.value = new Date().toISOString().substring(0, 10);
+      amount.value = '';
+      description.value = '';
+    });
+
+    btnEditCashIn.forEach((element) => {
+      element.addEventListener('click', () => {
+        formCashIn.setAttribute('action', '/admin/cash-in?_method=PUT');
+        modalCashInLabel.textContent = 'Ubah Kas Masuk';
+        btnModalForm.textContent = 'Ubah';
+
+        cashInId.value = element.dataset.id;
+        date.value = element.dataset.date;
+        amount.value = element.dataset.amount;
+        description.value = element.dataset.description;
+      });
+    });
   });
 </script>
 

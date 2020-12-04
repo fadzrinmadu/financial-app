@@ -37,6 +37,17 @@ cashSchema.statics.deleteCashIn = async function({ id }) {
   await cashIn.remove();
 };
 
+cashSchema.statics.editCashIn = async function(data) {
+  const { id, date, amount, description } = data;
+  const cashIn = await this.findOne({ _id: id });
+
+  cashIn.date = date;
+  cashIn.amount = amount;
+  cashIn.description = description;
+
+  await cashIn.save();
+}
+
 const Cash = mongoose.model('Cash', cashSchema);
 
 module.exports = Cash;
