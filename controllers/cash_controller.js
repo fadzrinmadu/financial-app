@@ -1,12 +1,16 @@
 const Cash = require('../models/Cash');
+const { currencyFormatter } = require('../helpers/formatter.js');
 
 const index = async (req, res) => {
   try {
-    const cashIn = await Cash.find().where({ type: 'cash-in' });
-    
+    let cashIn = await Cash.find().where({ type: 'cash-in' });
+
     const data = {
       siteTitle: 'Kas Masuk',
       cashIn,
+      helpers: {
+        currencyFormatter,
+      },
     };
 
     res.render('cash/cash_in_view', data);

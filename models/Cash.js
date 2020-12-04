@@ -21,6 +21,7 @@ const cashSchema = new mongoose.Schema({
 
 cashSchema.statics.addCashIn = async function(data) {
   const { date, amount, description } = data;
+
   const cashIn = await this.create({
     date,
     amount,
