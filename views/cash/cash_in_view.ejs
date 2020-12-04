@@ -47,7 +47,7 @@
                 <% cashIn.forEach((item, index) => { %>
                 <tr>
                   <td><%= ++index %></td>
-                  <td><%= item.date.toLocaleString().split(',')[0] %></td>
+                  <td><%= item.date.toISOString().substring(0, 10).replace(/\-/g, '/') %></td>
                   <td><%= item.description %></td>
                   <td class="text-right"><%= helpers.currencyFormatter(item.amount) %>,-</td>
                   <td class="text-center">
@@ -83,7 +83,7 @@
               <div class="modal-body">
                 <div class="form-group">
                   <label for="date">Tanggal</label>
-                  <input type="date" class="form-control" name="date" id="date">
+                  <input type="date" class="form-control" name="date" id="date" value="<%= new Date().toISOString().substring(0, 10) %>">
                 </div>
                 <div class="form-group">
                   <label for="amount">Jumlah</label>
