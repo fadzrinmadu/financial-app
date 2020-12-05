@@ -1,7 +1,7 @@
 const express = require('express');
 const dashboardController = require('../controllers/dashboard_controller');
 const cashController = require('../controllers/cash_controller');
-const reportController = require('../controllers/report_controller');
+const summaryController = require('../controllers/summary_controller');
 
 const router = express.Router();
 
@@ -18,6 +18,6 @@ router.get('/cash-out/:id', cashController.deleteCashOut);
 router.post('/cash-out', cashController.addCashOut);
 router.put('/cash-out', cashController.editCashOut);
 
-router.get('/report/cash-summary', reportController.cashSummary);
+router.get('/summary', summaryController.cashSummary);
 
 module.exports = router;

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../_partials/head.ejs') %>
+  <link href="/css/themes/green-light.css" rel="stylesheet" id="theme-style">
+</head>
+<body class="fixed-navbar fixed-layout">
+
+  <div class="page-wrapper">
+    <%- include('../_partials/navbar.ejs') %>
+    <%- include('../_partials/sidebar.ejs') %>
+
+    <div class="content-wrapper">
+      <div class="page-heading">
+        <h1 class="page-title">Rekapitulasi Kas</h1>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="index.html"><i class="la la-home font-20"></i></a>
+          </li>
+          <li class="breadcrumb-item"><a href="/admin">Home</a></li>
+          <li class="breadcrumb-item active">Rekapitulasi Kas</li>
+        </ol>
+      </div>
+      <div class="page-content fade-in-up">
+        <div class="ibox">
+          <div class="ibox-head">
+            <div class="ibox-title">Data Rekapitulasi Kas</div>
+            <div class="btn-wrapper">
+              <a class="btn btn-success btn-add" href="#" data-toggle="modal" data-target="#modalCashIn">
+                <i class="fa fa-pencil"></i>
+                <span>Tambah</span>
+              </a>
+            </div>
+          </div>
+          <div class="ibox-body">
+            <table class="table table-bordered table-responsive" id="dataTables">
+              <thead class="thead-default">
+                <tr>
+                  <th>No</th>
+                  <th>Tanggal</th>
+                  <th>Keterangan</th>
+                  <th class="text-center">Kas Masuk</th>
+                  <th class="text-center">Kas Keluar</th>
+                  <th class="text-center">Saldo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>1 Januari 2020</td>
+                  <td>Saldo awal</td>
+                  <td class="text-right">Rp 200.000,-</td>
+                  <td class="text-center"> - </td>
+                  <td class="text-right">Rp 200.000,-</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>2 Januari 2020</td>
+                  <td>Membeli tepung</td>
+                  <td class="text-center"> - </td>
+                  <td class="text-right">Rp 20.000,-</td>
+                  <td class="text-right">Rp 180.000,-</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      
+      <%- include('../_partials/footer.ejs') %>
+    </div>
+  </div>
+
+  <%- include('../_partials/preloader.ejs') %>
+  <%- include('../_partials/scripts.ejs') %>
+
+<script>
+  $(document).ready( function () {
+    $('#dataTables').DataTable();
+  });
+</script>
+
+</body>
+</html>
