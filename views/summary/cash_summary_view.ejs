@@ -26,9 +26,9 @@
           <div class="ibox-head">
             <div class="ibox-title">Data Rekapitulasi Kas</div>
             <div class="btn-wrapper">
-              <a class="btn btn-success btn-add" href="#" data-toggle="modal" data-target="#modalCashIn">
-                <i class="fa fa-pencil"></i>
-                <span>Tambah</span>
+              <a class="btn btn-success" href="#">
+                <i class="fa fa-print"></i>
+                <span>Cetak Laporan</span>
               </a>
             </div>
           </div>
@@ -45,22 +45,16 @@
                 </tr>
               </thead>
               <tbody>
+                <% cashes.forEach((cash, index) => { %>
                 <tr>
-                  <td>1</td>
-                  <td>1 Januari 2020</td>
-                  <td>Saldo awal</td>
-                  <td class="text-right">Rp 200.000,-</td>
-                  <td class="text-center"> - </td>
+                  <td><%= ++index %></td>
+                  <td><%= cash.date.toISOString().substring(0, 10).replace(/\-/g, '/') %></td>
+                  <td><%= cash.description %></td>
+                  <td class="text-<%= (cash.type === 'cash-in') ? 'right' : 'center' %>"><%= (cash.type === 'cash-in') ? `${helpers.currencyFormatter(cash.amount)},-` : '-' %></td>
+                  <td class="text-<%= (cash.type === 'cash-out') ? 'right' : 'center' %>"><%= (cash.type === 'cash-out') ? `${helpers.currencyFormatter(cash.amount)},-` : '-' %></td>
                   <td class="text-right">Rp 200.000,-</td>
                 </tr>
-                <tr>
-                  <td>2</td>
-                  <td>2 Januari 2020</td>
-                  <td>Membeli tepung</td>
-                  <td class="text-center"> - </td>
-                  <td class="text-right">Rp 20.000,-</td>
-                  <td class="text-right">Rp 180.000,-</td>
-                </tr>
+                <% }) %>
               </tbody>
             </table>
           </div>
