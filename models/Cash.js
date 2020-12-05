@@ -19,6 +19,16 @@ const cashSchema = new mongoose.Schema({
   },
 });
 
+cashSchema.statics.getTotalCash = async () => {
+  const dataCashIn = await Cash.find().where({ type: 'cash-in' });
+  const dataCashOut = await Cash.find().where({ type: 'cash-out' });
+  const totalCashIn = dataCashIn.reduce((total, item) => total + item.amount, 0);
+  const totalCashOut = dataCashOut.reduce((total, item) => total + item.amount, 0);
+  const totalCash = totalCashIn - totalCashOut;
+
+  return totalCash;
+};
+
 cashSchema.statics.addCashIn = async function(data) {
   const { date, amount, description } = data;
 
@@ -50,6 +60,11 @@ cashSchema.statics.deleteCashIn = async function({ id }) {
 
 cashSchema.statics.addCashOut = async function(data) {
   const { date, amount, description } = data;
+  const totalCash = await this.getTotalCash();
+
+  if (amount > totalCash) {
+    throw Error('Jumlah kas anda tidak cukup!');
+  }
 
   const cashOut = await this.create({
     date,
@@ -63,6 +78,12 @@ cashSchema.statics.addCashOut = async function(data) {
 
 cashSchema.statics.editCashOut = async function(data) {
   const { id, date, amount, description } = data;
+  const totalCash = await this.getTotalCash();
+
+  if (amount > totalCash) {
+    throw Error('Jumlah kas anda tidak cukup!');
+  }
+
   const cashOut = await this.findOne({ _id: id });
 
   cashOut.date = date;

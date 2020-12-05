@@ -74,6 +74,7 @@ const cashOut = async (req, res) => {
     const data = {
       siteTitle: 'Kas Keluar',
       cashOut,
+      totalCash: await Cash.getTotalCash(),
       totalCashOut: cashOut.reduce((total, item) => total + item.amount, 0),
       alert,
       helpers: {
@@ -95,7 +96,9 @@ const addCashOut = async (req, res) => {
     req.flash('alertMessage', 'Berhasil menambahkan data kas keluar');
     res.redirect('/admin/cash-out');
   } catch(error) {  
-    console.log(error);
+    req.flash('alertStatus', 'danger');
+    req.flash('alertMessage', `${error.message}`);
+    res.redirect('/admin/cash-out');
   }
 };
 
@@ -107,7 +110,9 @@ const editCashOut = async (req, res) => {
     req.flash('alertMessage', 'Berhasil mengubah data kas keluar');
     res.redirect('/admin/cash-out');
   } catch (error) {
-    console.log(error);
+    req.flash('alertStatus', 'danger');
+    req.flash('alertMessage', `${error.message}`);
+    res.redirect('/admin/cash-out');
   }
 };
 
