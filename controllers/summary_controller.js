@@ -1,9 +1,13 @@
 const cashSummary = (req, res) => {
-  const data = {
-    siteTitle: 'Cash Summary',
-  };
+  try {
+    const data = {
+      siteTitle: 'Cash Summary',
+    };
 
-  res.render('summary/cash_summary_view', data);
+    res.render('summary/cash_summary_view', data);
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 module.exports = {

@@ -19,13 +19,22 @@ const cashSchema = new mongoose.Schema({
   },
 });
 
-cashSchema.statics.getTotalCash = async () => {
-  const dataCashIn = await Cash.find().where({ type: 'cash-in' });
-  const dataCashOut = await Cash.find().where({ type: 'cash-out' });
+cashSchema.statics.getTotalCashIn = async function() {
+  const dataCashIn = await this.find().where({ type: 'cash-in' });
   const totalCashIn = dataCashIn.reduce((total, item) => total + item.amount, 0);
-  const totalCashOut = dataCashOut.reduce((total, item) => total + item.amount, 0);
-  const totalCash = totalCashIn - totalCashOut;
+  return totalCashIn;
+};
 
+cashSchema.statics.getTotalCashOut = async function() {
+  const dataCashOut = await this.find().where({ type: 'cash-out' });
+  const totalCashOut = dataCashOut.reduce((total, item) => total + item.amount, 0);
+  return totalCashOut;
+};
+
+cashSchema.statics.getTotalCash = async function() {
+  const totalCashIn = await this.getTotalCashIn();
+  const totalCashOut = await this.getTotalCashOut();
+  const totalCash = totalCashIn - totalCashOut;
   return totalCash;
 };
 

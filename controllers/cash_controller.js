@@ -13,7 +13,7 @@ const index = async (req, res) => {
     const data = {
       siteTitle: 'Kas Masuk',
       cashIn,
-      totalCashIn: cashIn.reduce((total, item) => total + item.amount, 0),
+      totalCashIn: await Cash.getTotalCashIn(),
       alert,
       helpers: {
         currencyFormatter,
@@ -75,7 +75,7 @@ const cashOut = async (req, res) => {
       siteTitle: 'Kas Keluar',
       cashOut,
       totalCash: await Cash.getTotalCash(),
-      totalCashOut: cashOut.reduce((total, item) => total + item.amount, 0),
+      totalCashOut: await Cash.getTotalCashOut(),
       alert,
       helpers: {
         currencyFormatter,

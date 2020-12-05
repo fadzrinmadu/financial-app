@@ -26,23 +26,23 @@
           <div class="col-lg-4 col-md-6">
             <div class="ibox bg-success color-white widget-stat">
               <div class="ibox-body">
-                <h2 class="m-b-5 font-strong">Rp. 2.230.000,-</h2>
-                <div class="m-b-5 mt-4">TOTAL KAS MASUK</div><i class="ti-shopping-cart widget-stat-icon"></i>
+                <h2 class="m-b-5 font-strong"><%= helpers.currencyFormatter(totalCashIn) %>,-</h2>
+                <div class="m-b-5 mt-4">TOTAL KAS MASUK</div><i class="fa fa-th-list widget-stat-icon"></i>
               </div>
             </div>
           </div>
           <div class="col-lg-4 col-md-6">
             <div class="ibox bg-info color-white widget-stat">
               <div class="ibox-body">
-                <h2 class="m-b-5 font-strong">Rp. 650.000,-</h2>
-                <div class="m-b-5 mt-4">TOTAL KAS KELUAR</div><i class="ti-bar-chart widget-stat-icon"></i>
+                <h2 class="m-b-5 font-strong"><%= helpers.currencyFormatter(totalCashOut) %>,-</h2>
+                <div class="m-b-5 mt-4">TOTAL KAS KELUAR</div><i class="fa fa-list-ul widget-stat-icon"></i>
               </div>
             </div>
           </div>
           <div class="col-lg-4 col-md-6">
             <div class="ibox bg-warning color-white widget-stat">
               <div class="ibox-body">
-                <h2 class="m-b-5 font-strong">Rp. 3.450.000,-</h2>
+                <h2 class="m-b-5 font-strong"><%= helpers.currencyFormatter(totalCash) %>,-</h2>
                 <div class="m-b-5 mt-4">TOTAL SALDO</div><i class="fa fa-money widget-stat-icon"></i>
               </div>
             </div>
