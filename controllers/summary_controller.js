@@ -6,7 +6,7 @@ const cashSummary = async (req, res) => {
     const cashes = await Cash.find().sort({ date: 'asc' });
 
     const data = {
-      siteTitle: 'Cash Summary',
+      siteTitle: 'Rekapitulasi Kas',
       cashes,
       helpers: {
         currencyFormatter,
