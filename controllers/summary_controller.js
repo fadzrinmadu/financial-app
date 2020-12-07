@@ -10,6 +10,7 @@ const cashSummary = async (req, res) => {
     let date = {};
     let totalCashIn = null;
     let totalCashOut = null;
+    let totalCashBeforePeriod = null;
     
     if (period === 'all') {
       cashes = await Cash.find().sort({ date: 'asc' });
@@ -22,6 +23,7 @@ const cashSummary = async (req, res) => {
       cashes = await Cash.getCashByPeriod(date.month, date.year);
       totalCashIn = await Cash.getTotalCashInByPeriod(date.month, date.year);
       totalCashOut = await Cash.getTotalCashOutByPeriod(date.month, date.year);
+      totalCashBeforePeriod = await Cash.getTotalCashBeforePeriod(date.month, date.year);
     } else {
       date.month = period.trim().split('-')[1];
       date.year = period.trim().split('-')[0];
@@ -29,6 +31,7 @@ const cashSummary = async (req, res) => {
       cashes = await Cash.getCashByPeriod(date.month, date.year);
       totalCashIn = await Cash.getTotalCashInByPeriod(date.month, date.year);
       totalCashOut = await Cash.getTotalCashOutByPeriod(date.month, date.year);
+      totalCashBeforePeriod = await Cash.getTotalCashBeforePeriod(date.month, date.year);
     }
 
     const data = {
@@ -37,6 +40,7 @@ const cashSummary = async (req, res) => {
       date,
       totalCashIn,
       totalCashOut,
+      totalCashBeforePeriod,
       helpers: {
         currencyFormatter,
       },

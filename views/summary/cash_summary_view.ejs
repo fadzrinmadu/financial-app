@@ -54,6 +54,7 @@
                 </tr>
               </thead>
               <tbody>
+                <% let saldo = totalCashBeforePeriod || 0 %>
                 <% cashes.forEach((cash, index) => { %>
                 <tr>
                   <td><%= ++index %></td>
@@ -61,7 +62,13 @@
                   <td><%= cash.description %></td>
                   <td class="text-<%= (cash.type === 'cash-in') ? 'right' : 'center' %>"><%= (cash.type === 'cash-in') ? `${helpers.currencyFormatter(cash.amount)},-` : '-' %></td>
                   <td class="text-<%= (cash.type === 'cash-out') ? 'right' : 'center' %>"><%= (cash.type === 'cash-out') ? `${helpers.currencyFormatter(cash.amount)},-` : '-' %></td>
-                  <td class="text-right">Rp 200.000,-</td>
+
+                  <% if (cash.type === 'cash-out') {
+                    saldo -= cash.amount; 
+                  } else {
+                    saldo += cash.amount;
+                  } %>
+                  <td class="text-right"><%= helpers.currencyFormatter(saldo) %>,-</td>
                 </tr>
                 <% }) %>
               </tbody>
@@ -70,7 +77,7 @@
                   <td class="text-center" colspan="3">Total</td>
                   <td class="text-right"><%= helpers.currencyFormatter(totalCashIn) %>,-</td>
                   <td class="text-right"><%= helpers.currencyFormatter(totalCashOut) %>,-</td>
-                  <td class="text-right">Rp 200.000,-</td>
+                  <td class="text-right"><%= helpers.currencyFormatter(saldo) %>,-</td>
                 </tr>
               </tfoot>
             </table>

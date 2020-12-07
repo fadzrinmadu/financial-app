@@ -50,6 +50,57 @@ cashSchema.statics.getTotalCash = async function() {
   return totalCash;
 };
 
+cashSchema.statics.getTotalCashInBeforePeriod = async function(month, year) {
+  const dataCashIn = await this.getCashInBeforePeriod(month, year);
+  const totalCashIn = dataCashIn.reduce((total, item) => total + item.amount, 0);
+  return totalCashIn;
+};
+
+cashSchema.statics.getTotalCashOutBeforePeriod = async function(month, year) {
+  const dataCashOut = await this.getCashOutBeforePeriod(month, year);
+  const totalCashOut = dataCashOut.reduce((total, item) => total + item.amount, 0);
+  return totalCashOut;
+};
+
+cashSchema.statics.getTotalCashBeforePeriod = async function(month, year) {
+  const totalCashIn = await this.getTotalCashInBeforePeriod(month, year);
+  const totalCashOut = await this.getTotalCashOutBeforePeriod(month, year);
+  const totalCash = totalCashIn - totalCashOut;
+  return totalCash;
+}
+
+cashSchema.statics.getCashBeforePeriod = async function(month, year) {
+  const cashes = await this.find({
+    date: { 
+      $lt: new Date(`${year}-${month}-01`).toISOString() 
+    },
+  }).sort({ date: 'asc' });
+
+  return cashes;  
+};
+
+cashSchema.statics.getCashInBeforePeriod = async function(month, year) {
+  const cashes = await this.find({
+    date: { 
+      $lt: new Date(`${year}-${month}-01`).toISOString() 
+    },
+    type: 'cash-in',
+  }).sort({ date: 'asc' });
+
+  return cashes;  
+};
+
+cashSchema.statics.getCashOutBeforePeriod = async function(month, year) {
+  const cashes = await this.find({
+    date: { 
+      $lt: new Date(`${year}-${month}-01`).toISOString() 
+    },
+    type: 'cash-out',
+  }).sort({ date: 'asc' });
+
+  return cashes;  
+};
+
 cashSchema.statics.getCashByPeriod = async function(month, year) {
   const cashes = await this.aggregate([
     {
