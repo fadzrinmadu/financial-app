@@ -25,17 +25,16 @@
         <div class="ibox">
           <div class="ibox-head">
             <div class="ibox-title">Data Rekapitulasi Kas</div>
-            <div class="btn-wrapper d-flex">
-              <div class="filter mr-2">
-                <%
-                  const today = new Date();
-                  const year = today.getFullYear();
-                  const month = today.getMonth() + 1;
-                %>
+            <div class="cash-action d-flex">
+              <div class="filter">
                 <div class="input-group">
-                  <input class="form-control" type="month" value="<%= `${year}-${month}` %>">
+                  <input type="month" class="form-control" id="inputPeriod" value="<%= `${date.year}-${date.month}` %>" onkeydown="return false">
                 </div>
               </div>
+              <a class="btn btn-primary mx-2" href="/admin/summary?period=all">
+                <i class="fa fa-eye"></i>
+                <span>Show All</span>
+              </a>
               <a class="btn btn-secondary btn-print" href="#">
                 <i class="fa fa-print"></i>
                 <span>Cetak Laporan</span>
@@ -69,8 +68,8 @@
               <tfoot>
                 <tr class="bg-light font-weight-bold">
                   <td class="text-center" colspan="3">Total</td>
-                  <td class="text-right">Rp 200.000,-</td>
-                  <td class="text-right">Rp 200.000,-</td>
+                  <td class="text-right"><%= helpers.currencyFormatter(totalCashIn) %>,-</td>
+                  <td class="text-right"><%= helpers.currencyFormatter(totalCashOut) %>,-</td>
                   <td class="text-right">Rp 200.000,-</td>
                 </tr>
               </tfoot>
@@ -90,29 +89,11 @@
   $(document).ready( function () {
     $('#dataTables').DataTable();
 
-    var array = [{
-        title: "a",
-        date: "2020-12-29"
-      }, {
-        title: "b",
-        date: "2020-12-7"
-      }, {
-        title: "c",
-        date: "2020-12-12"
-      }, {
-        title: "leave",
-        date: "2020-11-11"
-      }, {
-        title: "d",
-        date: "2020-11-7"
-      }],
-      currentMonth = new Date().getMonth() + 1,
-      currentYear = new Date().getFullYear(),
-      events = array.filter(e => {
-        var [year, month] = e.date.split('-'); // Or, var month = e.date.split('-')[1];
-        return (currentMonth === +month) && (currentYear == year);
-      });
-    console.log(events);
+    const inputPeriod = document.querySelector('#inputPeriod');
+
+    inputPeriod.addEventListener('change', (event) => {
+      location.replace(`/admin/summary?period=${inputPeriod.value}`);
+    });
   });
 </script>
 

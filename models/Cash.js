@@ -25,8 +25,20 @@ cashSchema.statics.getTotalCashIn = async function() {
   return totalCashIn;
 };
 
+cashSchema.statics.getTotalCashInByPeriod = async function(month, year) {
+  const dataCashIn = await this.getCashInByPeriod(month, year);
+  const totalCashIn = dataCashIn.reduce((total, item) => total + item.amount, 0);
+  return totalCashIn;
+};
+
 cashSchema.statics.getTotalCashOut = async function() {
   const dataCashOut = await this.find().where({ type: 'cash-out' });
+  const totalCashOut = dataCashOut.reduce((total, item) => total + item.amount, 0);
+  return totalCashOut;
+};
+
+cashSchema.statics.getTotalCashOutByPeriod = async function(month, year) {
+  const dataCashOut = await this.getCashOutByPeriod(month, year);
   const totalCashOut = dataCashOut.reduce((total, item) => total + item.amount, 0);
   return totalCashOut;
 };
@@ -38,7 +50,7 @@ cashSchema.statics.getTotalCash = async function() {
   return totalCash;
 };
 
-cashSchema.statics.getCashByMonthAndYear = async function(month, year) {
+cashSchema.statics.getCashByPeriod = async function(month, year) {
   const cashes = await this.aggregate([
     {
       $addFields: {
@@ -48,11 +60,34 @@ cashSchema.statics.getCashByMonthAndYear = async function(month, year) {
     },
     {
       $match: {
-        month: month, 
-        year: year,
+        month: parseInt(month), 
+        year: parseInt(year),
       },
     },
   ]).sort({ date: 'asc' });
+
+  return cashes;
+};
+
+cashSchema.statics.getCashInByPeriod = async function(month, year) {
+  const cashes = await this.aggregate([
+    {
+      $match: { type: 'cash-in' },
+    },
+    {
+      $addFields: {
+        'month': { $month: '$date' },
+        'year': { $year: '$date' },
+      },
+    },
+    {
+      $match: {
+        month: parseInt(month), 
+        year: parseInt(year),
+      },
+    },
+  ])
+  .sort({ date: 'asc' });
 
   return cashes;
 };
@@ -84,6 +119,29 @@ cashSchema.statics.editCashIn = async function(data) {
 cashSchema.statics.deleteCashIn = async function({ id }) {
   const cashIn = await this.findOne({ _id: id, type: 'cash-in' });
   await cashIn.remove();
+};
+
+cashSchema.statics.getCashOutByPeriod = async function(month, year) {
+  const cashes = await this.aggregate([
+    {
+      $match: { type: 'cash-out' },
+    },
+    {
+      $addFields: {
+        'month': { $month: '$date' },
+        'year': { $year: '$date' },
+      },
+    },
+    {
+      $match: {
+        month: parseInt(month), 
+        year: parseInt(year),
+      },
+    },
+  ])
+  .sort({ date: 'asc' });
+
+  return cashes;
 };
 
 cashSchema.statics.addCashOut = async function(data) {
