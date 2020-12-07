@@ -25,8 +25,18 @@
         <div class="ibox">
           <div class="ibox-head">
             <div class="ibox-title">Data Rekapitulasi Kas</div>
-            <div class="btn-wrapper">
-              <a class="btn btn-secondary" href="#">
+            <div class="btn-wrapper d-flex">
+              <div class="filter mr-2">
+                <%
+                  const today = new Date();
+                  const year = today.getFullYear();
+                  const month = today.getMonth() + 1;
+                %>
+                <div class="input-group">
+                  <input class="form-control" type="month" value="<%= `${year}-${month}` %>">
+                </div>
+              </div>
+              <a class="btn btn-secondary btn-print" href="#">
                 <i class="fa fa-print"></i>
                 <span>Cetak Laporan</span>
               </a>
@@ -79,6 +89,30 @@
 <script>
   $(document).ready( function () {
     $('#dataTables').DataTable();
+
+    var array = [{
+        title: "a",
+        date: "2020-12-29"
+      }, {
+        title: "b",
+        date: "2020-12-7"
+      }, {
+        title: "c",
+        date: "2020-12-12"
+      }, {
+        title: "leave",
+        date: "2020-11-11"
+      }, {
+        title: "d",
+        date: "2020-11-7"
+      }],
+      currentMonth = new Date().getMonth() + 1,
+      currentYear = new Date().getFullYear(),
+      events = array.filter(e => {
+        var [year, month] = e.date.split('-'); // Or, var month = e.date.split('-')[1];
+        return (currentMonth === +month) && (currentYear == year);
+      });
+    console.log(events);
   });
 </script>
 

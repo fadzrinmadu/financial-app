@@ -38,6 +38,25 @@ cashSchema.statics.getTotalCash = async function() {
   return totalCash;
 };
 
+cashSchema.statics.getCashByMonthAndYear = async function(month, year) {
+  const cashes = await this.aggregate([
+    {
+      $addFields: {
+        'month': { $month: '$date' },
+        'year': { $year: '$date' },
+      },
+    },
+    {
+      $match: {
+        month: month, 
+        year: year,
+      },
+    },
+  ]).sort({ date: 'asc' });
+
+  return cashes;
+};
+
 cashSchema.statics.addCashIn = async function(data) {
   const { date, amount, description } = data;
 

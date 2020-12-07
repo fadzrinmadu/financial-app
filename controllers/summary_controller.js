@@ -3,7 +3,7 @@ const { currencyFormatter } = require('../helpers/formatter.js');
 
 const cashSummary = async (req, res) => {
   try {
-    const cashes = await Cash.find().sort({ date: 'asc' });
+    const cashes = await Cash.getCashByMonthAndYear(12, 2020);
 
     const data = {
       siteTitle: 'Rekapitulasi Kas',
