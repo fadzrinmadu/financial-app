@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 const session = require('express-session');
 const flash = require('connect-flash');
+const pdf = require('express-pdf');
 
 const authRouter = require('./routes/auth.js');
 const adminRouter = require('./routes/admin.js');
@@ -33,6 +34,7 @@ app.use(session({
   saveUninitialized: true,
 }));
 
+app.use(pdf);
 app.use(flash());
 app.use(methodOverride('_method'));
 app.use(logger('dev'));

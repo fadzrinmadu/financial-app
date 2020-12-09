@@ -35,7 +35,7 @@
                 <i class="fa fa-eye"></i>
                 <span>Show All</span>
               </a>
-              <a class="btn btn-secondary btn-print" href="#">
+              <a class="btn btn-secondary btn-print" href="/admin/summary/report" target="_blank">
                 <i class="fa fa-print"></i>
                 <span>Cetak Laporan</span>
               </a>
@@ -97,9 +97,13 @@
     $('#dataTables').DataTable();
 
     const inputPeriod = document.querySelector('#inputPeriod');
+    const btnPrint = document.querySelector('.btn-print');
+
+    btnPrint.setAttribute('href', `/admin/summary/report?period=${inputPeriod.value || 'all'}`);
 
     inputPeriod.addEventListener('change', (event) => {
       location.replace(`/admin/summary?period=${inputPeriod.value}`);
+      btnPrint.setAttribute('href', `/admin/summary/report?period=${inputPeriod.value}`);
     });
   });
 </script>

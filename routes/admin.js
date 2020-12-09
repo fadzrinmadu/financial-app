@@ -19,5 +19,6 @@ router.post('/cash-out', cashController.addCashOut);
 router.put('/cash-out', cashController.editCashOut);
 
 router.get('/summary', summaryController.cashSummary);
+router.get('/summary/report', summaryController.cashSummaryReport);
 
 module.exports = router;
