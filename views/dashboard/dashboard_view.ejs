@@ -48,6 +48,141 @@
             </div>
           </div>
         </div>
+        <div class="row">
+          <div class="col">
+            <div class="ibox">
+              <div class="ibox-body">
+                <div class="flexbox mb-4">
+                  <div>
+                    <h3 class="mb-2">Grafik</h3>
+                    <div>Grafik Kas Masuk dan Kas Keluar Tahun 2020</div>
+                  </div>
+                  <div class="d-inline-flex">
+                    <div class="px-3" style="border-right: 1px solid rgba(0,0,0,.1);">
+                      <div class="text-muted">KAS MASUK BULAN INI</div>
+                      <div>
+                        <span class="h2 m-0">Rp 1.250.000.00,-</span>
+                      </div>
+                    </div>
+                    <div class="px-3">
+                      <div class="text-muted">KAS KELUAR BULAN INI</div>
+                      <div>
+                        <span class="h2 m-0">Rp 380.000.00,-</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+                    <canvas id="bar_chart" style="height: 260px; display: block; width: 683px;" width="683" height="260" class="chartjs-render-monitor"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xl-6">
+            <div class="ibox">
+              <div class="ibox-head">
+                <div class="ibox-title">Daftar 5 Pemasukkan Terbanyak</div>
+              </div>
+              <div class="ibox-body">
+                <table class="table table-bordered table-responsive">
+                  <thead>
+                    <tr>
+                      <th>No</th>
+                      <th>Tanggal</th>
+                      <th>Keterangan</th>
+                      <th>Jumlah</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>2020/12/05</td>
+                      <td>Gajian</td>
+                      <td>Rp 2.000.000.00,-</td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>2020/11/06</td>
+                      <td>Hasil rampok</td>
+                      <td>Rp 200.000.00,-</td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td>2020/12/24</td>
+                      <td>Mengantar barang dagang</td>
+                      <td>Rp 100.000.00,-</td>
+                    </tr>
+                    <tr>
+                      <td>4</td>
+                      <td>2020/12/04</td>
+                      <td>Hasil jual barang bekas</td>
+                      <td>Rp 65.000.00,-</td>
+                    </tr>
+                    <tr>
+                      <td>5</td>
+                      <td>2020/12/08</td>
+                      <td>Kembalian uang barang</td>
+                      <td>Rp 32.000.00,-</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-6">
+            <div class="ibox">
+              <div class="ibox-head">
+                <div class="ibox-title">Daftar 5 Pengeluaran Terbanyak</div>
+              </div>
+              <div class="ibox-body">
+                <table class="table table-bordered table-responsive">
+                  <thead>
+                    <tr>
+                      <th>No</th>
+                      <th>Tanggal</th>
+                      <th>Keterangan</th>
+                      <th>Jumlah</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>2020/12/05</td>
+                      <td>Gajian</td>
+                      <td>Rp 2.000.000.00,-</td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>2020/11/06</td>
+                      <td>Hasil rampok</td>
+                      <td>Rp 200.000.00,-</td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td>2020/12/24</td>
+                      <td>Mengantar barang dagang</td>
+                      <td>Rp 100.000.00,-</td>
+                    </tr>
+                    <tr>
+                      <td>4</td>
+                      <td>2020/12/04</td>
+                      <td>Hasil jual barang bekas</td>
+                      <td>Rp 65.000.00,-</td>
+                    </tr>
+                    <tr>
+                      <td>5</td>
+                      <td>2020/12/08</td>
+                      <td>Kembalian uang barang</td>
+                      <td>Rp 32.000.00,-</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       
       <%- include('../_partials/footer.ejs') %>
@@ -56,6 +191,43 @@
 
   <%- include('../_partials/preloader.ejs') %>
   <%- include('../_partials/scripts.ejs') %>
+
+<script>
+  $(function() {
+    const barData = {
+      labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
+      datasets: [
+        {
+          label: "Kas Masuk",
+          borderColor: 'rgb(46,204,113,1)',
+          backgroundColor: 'rgb(46,204,113,1)',
+          pointBackgroundColor: 'rgb(46,204,113,1)',
+          data: [29, 48, 40, 19, 78, 31, 85, 58, 74, 54, 59, 40, 29],
+        },
+        {
+          label: "Kas Keluar",
+          backgroundColor: "#DADDE0",
+          borderColor: "#DADDE0",
+          data: [45, 80, 58, 74, 54, 59, 40, 29, 48, 40, 19, 78, 31, 85],
+        },
+      ],
+    };
+
+    const barOptions = {
+      responsive: !0,
+      maintainAspectRatio: !1,
+    };
+
+    const ctx = document.getElementById("bar_chart").getContext("2d");
+    
+    new Chart(ctx, {
+      type: "bar",
+      data: barData,
+      options: barOptions,
+    });
+
+  });
+</script>
 
 </body>
 </html>
