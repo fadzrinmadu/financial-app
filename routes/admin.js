@@ -2,6 +2,7 @@ const express = require('express');
 const dashboardController = require('../controllers/dashboard_controller');
 const cashController = require('../controllers/cash_controller');
 const summaryController = require('../controllers/summary_controller');
+const profileController = require('../controllers/profile_controller');
 
 const router = express.Router();
 
@@ -20,5 +21,7 @@ router.put('/cash-out', cashController.editCashOut);
 
 router.get('/summary', summaryController.cashSummary);
 router.get('/summary/report', summaryController.cashSummaryReport);
+
+router.get('/profile', profileController.index);
 
 module.exports = router;
