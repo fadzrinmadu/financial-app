@@ -55,19 +55,19 @@
                 <div class="flexbox mb-4">
                   <div>
                     <h3 class="mb-2">Grafik</h3>
-                    <div>Grafik Kas Masuk dan Kas Keluar Tahun 2020</div>
+                    <div>Grafik Kas Masuk dan Kas Keluar Tahun <%= year %></div>
                   </div>
                   <div class="d-inline-flex">
                     <div class="px-3" style="border-right: 1px solid rgba(0,0,0,.1);">
                       <div class="text-muted">KAS MASUK BULAN INI</div>
                       <div>
-                        <span class="h2 m-0">Rp 1.250.000.00,-</span>
+                        <span class="h3 m-0"><%= helpers.currencyFormatter(totalCashInThisMonth) %>,-</span>
                       </div>
                     </div>
                     <div class="px-3">
                       <div class="text-muted">KAS KELUAR BULAN INI</div>
                       <div>
-                        <span class="h2 m-0">Rp 380.000.00,-</span>
+                        <span class="h3 m-0"><%= helpers.currencyFormatter(totalCashOutThisMonth) %>,-</span>
                       </div>
                     </div>
                   </div>
@@ -87,45 +87,23 @@
               </div>
               <div class="ibox-body">
                 <table class="table table-bordered table-responsive">
-                  <thead>
+                  <thead class="thead-default">
                     <tr>
                       <th>No</th>
                       <th>Tanggal</th>
                       <th>Keterangan</th>
-                      <th>Jumlah</th>
+                      <th class="text-center">Jumlah</th>
                     </tr>
                   </thead>
                   <tbody>
+                    <% cashIn.forEach((item, index) => { %>
                     <tr>
-                      <td>1</td>
-                      <td>2020/12/05</td>
-                      <td>Gajian</td>
-                      <td>Rp 2.000.000.00,-</td>
+                      <td><%= ++index %></td>
+                      <td><%= item.date.toISOString().substring(0, 10).replace(/\-/g, '/') %></td>
+                      <td><%= item.description %></td>
+                      <td class="text-right"><%= helpers.currencyFormatter(item.amount) %>,-</td>
                     </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>2020/11/06</td>
-                      <td>Hasil rampok</td>
-                      <td>Rp 200.000.00,-</td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td>2020/12/24</td>
-                      <td>Mengantar barang dagang</td>
-                      <td>Rp 100.000.00,-</td>
-                    </tr>
-                    <tr>
-                      <td>4</td>
-                      <td>2020/12/04</td>
-                      <td>Hasil jual barang bekas</td>
-                      <td>Rp 65.000.00,-</td>
-                    </tr>
-                    <tr>
-                      <td>5</td>
-                      <td>2020/12/08</td>
-                      <td>Kembalian uang barang</td>
-                      <td>Rp 32.000.00,-</td>
-                    </tr>
+                    <% }) %>
                   </tbody>
                 </table>
               </div>
@@ -138,45 +116,23 @@
               </div>
               <div class="ibox-body">
                 <table class="table table-bordered table-responsive">
-                  <thead>
+                  <thead class="thead-default">
                     <tr>
                       <th>No</th>
                       <th>Tanggal</th>
                       <th>Keterangan</th>
-                      <th>Jumlah</th>
+                      <th class="text-center">Jumlah</th>
                     </tr>
                   </thead>
                   <tbody>
+                    <% cashOut.forEach((item, index) => { %>
                     <tr>
-                      <td>1</td>
-                      <td>2020/12/05</td>
-                      <td>Gajian</td>
-                      <td>Rp 2.000.000.00,-</td>
+                      <td><%= ++index %></td>
+                      <td><%= item.date.toISOString().substring(0, 10).replace(/\-/g, '/') %></td>
+                      <td><%= item.description %></td>
+                      <td class="text-right"><%= helpers.currencyFormatter(item.amount) %>,-</td>
                     </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>2020/11/06</td>
-                      <td>Hasil rampok</td>
-                      <td>Rp 200.000.00,-</td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td>2020/12/24</td>
-                      <td>Mengantar barang dagang</td>
-                      <td>Rp 100.000.00,-</td>
-                    </tr>
-                    <tr>
-                      <td>4</td>
-                      <td>2020/12/04</td>
-                      <td>Hasil jual barang bekas</td>
-                      <td>Rp 65.000.00,-</td>
-                    </tr>
-                    <tr>
-                      <td>5</td>
-                      <td>2020/12/08</td>
-                      <td>Kembalian uang barang</td>
-                      <td>Rp 32.000.00,-</td>
-                    </tr>
+                    <% }) %>
                   </tbody>
                 </table>
               </div>
