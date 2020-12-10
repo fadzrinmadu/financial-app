@@ -15,7 +15,7 @@
         <h1 class="page-title">Profile</h1>
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
-            <a href="index.html"><i class="la la-home font-20"></i></a>
+            <a href="/admin"><i class="la la-home font-20"></i></a>
           </li>
           <li class="breadcrumb-item"><a href="/admin">Home</a></li>
           <li class="breadcrumb-item active">Profile</li>
@@ -29,7 +29,7 @@
                 <div class="ibox-title">Data Profile</div>
               </div>
               <div class="ibox-body">
-                <form action="/admin/profile?_method=PUT" method="POST">
+                <form action="/admin/profile?_method=PUT" method="POST" enctype="multipart/form-data">
                   <div class="row">
                     <div class="col">
                       <div class="form-group">
@@ -55,7 +55,7 @@
                     <div class="col">
                       <div class="form-group">
                         <div class="photo-profile mb-2">
-                          <img class="img-thumbnail" src="/img/users/<%= userProfile.image %>" alt="Photo Profile" style="width: 138px; height: 138px; object-fit: cover;">
+                          <img class="img-thumbnail" src="/img/<%= userProfile.image %>" alt="Photo Profile" style="width: 138px; height: 138px; object-fit: cover;">
                         </div>
                         <label>Foto Profile</label>
                         <input class="form-control" type="file" name="image">

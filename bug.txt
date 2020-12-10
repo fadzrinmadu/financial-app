@@ -1,1 +1,0 @@
-[1] menghapus kas masuk sampai jumlah kas masuk kurang dari kas keluar. (BUG)

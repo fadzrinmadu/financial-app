@@ -2,13 +2,12 @@ const User = require('../models/User.js');
 
 const index = (req, res) => {
   try {
-    
     if (req.session.user === null || req.session.user === undefined) {
       const data = {
         siteTitle: 'Login',
       };
 
-      res.render('login/login_view', data);
+      res.render('login/login_view', data);    
     } else {
       res.redirect('/admin');
     }

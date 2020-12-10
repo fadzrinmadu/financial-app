@@ -4,6 +4,7 @@ const cashController = require('../controllers/cash_controller');
 const summaryController = require('../controllers/summary_controller');
 const profileController = require('../controllers/profile_controller');
 const { isLogin } = require('../middlewares/auth.js');
+const { uploadSingle } = require('../middlewares/multer.js');
 
 const router = express.Router();
 
@@ -26,6 +27,6 @@ router.get('/summary', summaryController.cashSummary);
 router.get('/summary/report', summaryController.cashSummaryReport);
 
 router.get('/profile', profileController.index);
-router.put('/profile', profileController.editProfile);
+router.put('/profile', uploadSingle, profileController.editProfile);
 
 module.exports = router;

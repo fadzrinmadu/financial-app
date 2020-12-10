@@ -1,5 +1,5 @@
 {
-  "name": "financial-app",
+  "name": "sim-keuangan",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -16,10 +16,12 @@
     "express": "~4.16.1",
     "express-pdf": "^1.2.2",
     "express-session": "^1.17.1",
+    "fs-extra": "^9.0.1",
     "http-errors": "~1.6.3",
     "method-override": "^3.0.0",
     "mongoose": "^5.11.1",
     "mongoose-seed": "^0.6.0",
-    "morgan": "~1.9.1"
+    "morgan": "~1.9.1",
+    "multer": "^1.4.2"
   }
 }
