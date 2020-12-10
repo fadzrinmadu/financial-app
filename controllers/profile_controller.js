@@ -2,6 +2,7 @@ const index = async (req, res) => {
   try {
     const data = {
       siteTitle: 'Profile',
+      user: req.session.user,
     };
 
     res.render('profile/profile_view', data);

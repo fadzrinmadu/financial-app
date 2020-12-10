@@ -30,6 +30,7 @@ const index = async (req, res) => {
       year,
       cashIn,
       cashOut,
+      user: req.session.user,
       helpers: {
         currencyFormatter,
       },

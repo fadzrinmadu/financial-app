@@ -42,6 +42,7 @@ const cashSummary = async (req, res) => {
       totalCashIn,
       totalCashOut,
       totalCashBeforePeriod,
+      user: req.session.user,
       helpers: {
         currencyFormatter,
       },

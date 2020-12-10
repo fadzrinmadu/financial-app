@@ -3,8 +3,11 @@ const dashboardController = require('../controllers/dashboard_controller');
 const cashController = require('../controllers/cash_controller');
 const summaryController = require('../controllers/summary_controller');
 const profileController = require('../controllers/profile_controller');
+const { isLogin } = require('../middlewares/auth.js');
 
 const router = express.Router();
+
+router.use(isLogin);
 
 router.get('/', dashboardController.index);
 router.get('/dashboard', dashboardController.index);

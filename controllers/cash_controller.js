@@ -15,6 +15,7 @@ const index = async (req, res) => {
       cashIn,
       totalCashIn: await Cash.getTotalCashIn(),
       alert,
+      user: req.session.user,
       helpers: {
         currencyFormatter,
       },
@@ -77,6 +78,7 @@ const cashOut = async (req, res) => {
       totalCash: await Cash.getTotalCash(),
       totalCashOut: await Cash.getTotalCashOut(),
       alert,
+      user: req.session.user,
       helpers: {
         currencyFormatter,
       },
