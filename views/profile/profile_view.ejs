@@ -29,16 +29,16 @@
                 <div class="ibox-title">Data Profile</div>
               </div>
               <div class="ibox-body">
-                <form>
+                <form action="/admin/profile?_method=PUT" method="POST">
                   <div class="row">
                     <div class="col">
                       <div class="form-group">
                         <label>Nama Lengkap</label>
-                        <input class="form-control" type="text" name="name">
+                        <input class="form-control" type="text" name="name" value="<%= userProfile.name %>">
                       </div>
                       <div class="form-group">
                         <label>Username</label>
-                        <input class="form-control" type="text" name="username">
+                        <input class="form-control" type="text" name="username" value="<%= userProfile.username %>">
                       </div>
                       <div class="row">
                         <div class="col form-group">
@@ -55,7 +55,7 @@
                     <div class="col">
                       <div class="form-group">
                         <div class="photo-profile mb-2">
-                          <img class="img-thumbnail" src="/img/users/u3.jpg" alt="Photo Profile" style="width: 138px; height: 138px; object-fit: cover;">
+                          <img class="img-thumbnail" src="/img/users/<%= userProfile.image %>" alt="Photo Profile" style="width: 138px; height: 138px; object-fit: cover;">
                         </div>
                         <label>Foto Profile</label>
                         <input class="form-control" type="file" name="image">
@@ -65,7 +65,7 @@
                   <div class="row">
                     <div class="col">
                       <div class="form-group">
-                        <input type="hidden" name="id">
+                        <input type="hidden" name="id" value="<%= userProfile.id %>">
                         <button class="btn btn-primary" type="submit">Simpan</button>
                       </div>
                     </div>

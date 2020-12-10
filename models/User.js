@@ -39,6 +39,14 @@ userSchema.statics.login = async function(username, password) {
   return user;
 };
 
+userSchema.statics.changePassword = async function(id, password, rePassword) {
+  if (password !== rePassword) {
+    throw Error('comfirm password do not macth');
+  } else {
+    await User.findOneAndUpdate({ _id: id }, { password });
+  }
+}
+
 const User = mongoose.model('User', userSchema);
 
 module.exports = User;

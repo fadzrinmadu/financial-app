@@ -26,5 +26,6 @@ router.get('/summary', summaryController.cashSummary);
 router.get('/summary/report', summaryController.cashSummaryReport);
 
 router.get('/profile', profileController.index);
+router.put('/profile', profileController.editProfile);
 
 module.exports = router;
