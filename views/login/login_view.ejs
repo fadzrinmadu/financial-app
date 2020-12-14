@@ -10,6 +10,9 @@
   <div class="content">
     <form id="login-form" action="/login" method="POST" style="margin-top: 120px;">
       <h2 class="login-title">Log in</h2>
+
+      <%- include('../_partials/message.ejs') %>
+
       <div class="form-group">
         <div class="input-group-icon right">
           <div class="input-icon"><i class="fa fa-user"></i></div>
@@ -36,9 +39,8 @@
     $('#login-form').validate({
       errorClass: "help-block",
       rules: {
-        email: {
+        username: {
           required: true,
-          email: true,
         },
         password: {
           required: true,

@@ -3,23 +3,28 @@ const User = require('../models/User.js');
 const index = (req, res) => {
   try {
     if (req.session.user === null || req.session.user === undefined) {
-      const data = {
-        siteTitle: 'Login',
+      const alert = {
+        message: req.flash('alertMessage'),
+        status: req.flash('alertStatus'),
       };
 
-      res.render('login/login_view', data);    
+      res.render('login/login_view', {
+        siteTitle: 'Login',
+        alert,
+      });    
     } else {
       res.redirect('/admin');
     }
   } catch(error) {
-    console.log(error);
+    req.flash('alertMessage', `${error.message}`);
+    req.flash('alertStatus', 'danger');
+    res.redirect('/');
   }
 };
 
 const loginAction = async (req, res) => {
-  const { username, password } = req.body;
-
   try {
+    const { username, password } = req.body;
     const user = await User.login(username, password);
 
     req.session.user = {
@@ -30,7 +35,9 @@ const loginAction = async (req, res) => {
 
     res.redirect('/admin');
   } catch(error) {
-    console.log(error);
+    req.flash('alertMessage', `${error.message}`);
+    req.flash('alertStatus', 'danger');
+    res.redirect('/');
   }
 };
 
