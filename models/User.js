@@ -30,12 +30,12 @@ userSchema.pre('save', async function(next) {
 userSchema.statics.login = async function(username, password) {
   const user = await this.findOne({ username });
   if (!user) {
-    throw Error('username is not found');
+    throw Error('username tidak ditemukan');
   }
 
   const auth = await bcrypt.compare(password, user.password);
   if (!auth) {
-    throw Error('password do not match');
+    throw Error('password Anda salah');
   }
 
   return user;

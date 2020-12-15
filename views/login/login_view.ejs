@@ -46,6 +46,14 @@
           required: true,
         },
       },
+      messages: {
+        username: {
+          required: 'Masukkan username Anda',
+        },
+        password: {
+          required: 'Masukkan password Anda',
+        },
+      },
       highlight: function(e) {
         $(e).closest(".form-group").addClass("has-error");
       },
