@@ -10,6 +10,9 @@ const index = async (req, res) => {
     const totalCashInThisMonth = await Cash.getTotalCashInByPeriod(month, year);
     const totalCashOutThisMonth = await Cash.getTotalCashOutByPeriod(month, year);
 
+    const totalCashInEveryMonthByYear = await Cash.getTotalCashInEveryMonthByYear(year);
+    const totalCashOutEveryMonthByYear = await Cash.getTotalCashOutEveryMonthByYear(year);
+
     const cashIn = await Cash.find()
       .where({ type: 'cash-in' })
       .sort({ amount: 'desc' })
@@ -20,13 +23,15 @@ const index = async (req, res) => {
       .sort({ amount: 'desc' })
       .limit(5);
 
-    const data = {
+    res.render('dashboard/dashboard_view', {
       siteTitle: 'Dashboard',
       totalCashIn: await Cash.getTotalCashIn(),
       totalCashOut: await Cash.getTotalCashOut(),
       totalCash: await Cash.getTotalCash(),
       totalCashInThisMonth,
       totalCashOutThisMonth,
+      totalCashInEveryMonthByYear,
+      totalCashOutEveryMonthByYear,
       year,
       cashIn,
       cashOut,
@@ -34,11 +39,10 @@ const index = async (req, res) => {
       helpers: {
         currencyFormatter,
       },
-    };
-
-    res.render('dashboard/dashboard_view', data);
+    });
   } catch(error) {
     console.log(error);
+    res.redirect('/admin');
   }
 };
 

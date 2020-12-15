@@ -158,13 +158,13 @@
           borderColor: 'rgb(46,204,113,1)',
           backgroundColor: 'rgb(46,204,113,1)',
           pointBackgroundColor: 'rgb(46,204,113,1)',
-          data: [29, 48, 40, 19, 78, 31, 85, 58, 74, 54, 59, 40, 29],
+          data: [<%= totalCashInEveryMonthByYear %>],
         },
         {
           label: "Kas Keluar",
           backgroundColor: "#DADDE0",
           borderColor: "#DADDE0",
-          data: [45, 80, 58, 74, 54, 59, 40, 29, 48, 40, 19, 78, 31, 85],
+          data: [<%= totalCashOutEveryMonthByYear %>],
         },
       ],
     };
@@ -172,6 +172,32 @@
     const barOptions = {
       responsive: !0,
       maintainAspectRatio: !1,
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true,
+            callback: function(value, index, values) {
+              if(parseInt(value) >= 1000){
+                return 'Rp ' + value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+              } else {
+                return 'Rp ' + value;
+              }
+            }
+          }
+        }]
+      },
+      tooltips: {
+        callbacks: {
+          label: function(item, data) {
+            const value = data.datasets[item.datasetIndex].data[item.index];
+            if(parseInt(value) >= 1000){
+              return 'Rp ' + value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            } else {
+              return 'Rp ' + value;
+            }
+          }
+        }
+      },
     };
 
     const ctx = document.getElementById("bar_chart").getContext("2d");

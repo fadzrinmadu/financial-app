@@ -19,6 +19,40 @@ const cashSchema = new mongoose.Schema({
   },
 });
 
+cashSchema.statics.getTotalCashInEveryMonthByYear = async function(year) {
+  return [
+    await this.getTotalCashInByPeriod(1, year),
+    await this.getTotalCashInByPeriod(2, year),
+    await this.getTotalCashInByPeriod(3, year),
+    await this.getTotalCashInByPeriod(4, year),
+    await this.getTotalCashInByPeriod(5, year),
+    await this.getTotalCashInByPeriod(6, year),
+    await this.getTotalCashInByPeriod(7, year),
+    await this.getTotalCashInByPeriod(8, year),
+    await this.getTotalCashInByPeriod(9, year),
+    await this.getTotalCashInByPeriod(10, year),
+    await this.getTotalCashInByPeriod(11, year),
+    await this.getTotalCashInByPeriod(12, year),
+  ];
+};
+
+cashSchema.statics.getTotalCashOutEveryMonthByYear = async function(year) {
+  return [
+    await this.getTotalCashOutByPeriod(1, year),
+    await this.getTotalCashOutByPeriod(2, year),
+    await this.getTotalCashOutByPeriod(3, year),
+    await this.getTotalCashOutByPeriod(4, year),
+    await this.getTotalCashOutByPeriod(5, year),
+    await this.getTotalCashOutByPeriod(6, year),
+    await this.getTotalCashOutByPeriod(7, year),
+    await this.getTotalCashOutByPeriod(8, year),
+    await this.getTotalCashOutByPeriod(9, year),
+    await this.getTotalCashOutByPeriod(10, year),
+    await this.getTotalCashOutByPeriod(11, year),
+    await this.getTotalCashOutByPeriod(12, year),
+  ];
+};
+
 cashSchema.statics.getTotalCashIn = async function() {
   const dataCashIn = await this.find().where({ type: 'cash-in' });
   const totalCashIn = dataCashIn.reduce((total, item) => total + item.amount, 0);
