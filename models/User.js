@@ -43,9 +43,11 @@ userSchema.statics.login = async function(username, password) {
 
 userSchema.statics.changePassword = async function(id, password, rePassword) {
   if (password !== rePassword) {
-    throw Error('comfirm password do not macth');
+    throw Error('password Anda tidak sama');
   } else {
-    await User.findOneAndUpdate({ _id: id }, { password });
+    const user = await this.findOne({ _id: id });
+    user.password = password;
+    await user.save();
   }
 }
 

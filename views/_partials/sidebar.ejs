@@ -2,7 +2,7 @@
   <div id="sidebar-collapse">
     <div class="admin-block d-flex">
       <div>
-        <img class="rounded-circle" src="/img/user-default.jpg" width="45px" />
+        <img class="rounded-circle" src="/img/<%= user.image %>" style="width:45px;height:45px;object-fit:cover" />
       </div>
       <div class="admin-info">
         <div class="font-strong"><%= user.name || user.username %></div><small>Administrator</small>

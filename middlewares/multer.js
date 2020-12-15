@@ -14,15 +14,15 @@ const checkFileType = (file, callback) => {
 };
 
 const storage = multer.diskStorage({
-  destination: 'public/images',
+  destination: 'public/img',
   filename: function(req, file, callback) {
-    callback(null, Date.now() + path.extname(file.originalname));
+    callback(null, 'user-' + Date.now() + path.extname(file.originalname));
   },
 });
 
 const uploadSingle = multer({
   storage: storage,
-  limits: { fileSize: 10000 },
+  limits: { fileSize: 100000 },
   fileFilter: function(req, file, callback) {
     checkFileType(file, callback);
   },
